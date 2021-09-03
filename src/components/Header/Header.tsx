@@ -1,9 +1,13 @@
-const Header = () => {
-    return (
-        <header className='container mx-auto'>
-            <h1 className='text-6xl text-center'>Blog Tarik Razine</h1>
-        </header>
-    )
+interface Props {
+  children?: React.ReactNode
 }
 
-export default Header
+const Header = (props: Props) => {
+  return (
+    <header className="navbar mb-2 shadow-lg bg-neutral text-neutral-content">
+      {props.children}
+    </header>
+  );
+};
+
+export default Header;

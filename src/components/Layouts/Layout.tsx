@@ -1,18 +1,19 @@
-import Nav from "../Navigation";
+import Navigation from "../Navigation";
 import Header from "../Header";
 
 interface Props {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const Layout = (props: Props) => {
-    return (
-        <>
-            <Nav />
-            <Header />
-            {props.children}
-        </>
-    );
+  return (
+    <>
+      <Header>
+        <Navigation />
+      </Header>
+      {props.children}
+    </>
+  );
 };
 
 export default Layout;
