@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Nav = () => {
   return (
-    <div className='container mx-auto'>
+    <div className="container mx-auto">
       <div className="flex-none px-2 mx-2">
         <span className="text-lg font-bold">{"<TARIKRAZINEBLOG />"}</span>
       </div>

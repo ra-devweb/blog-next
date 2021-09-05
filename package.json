@@ -26,10 +26,12 @@
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-config-prettier": "^8.3.0",
+    "gray-matter": "^4.0.3",
+    "husky": "^7.0.0",
     "postcss": "^8.3.6",
     "prettier": "^2.3.2",
+    "react-markdown": "^7.0.1",
     "tailwindcss": "^2.2.9",
-    "typescript": "4.4.2",
-    "husky": "^7.0.0"
+    "typescript": "4.4.2"
   }
 }

@@ -1,21 +1,45 @@
-import PostDetails from "../../components/Posts/PostDetails"
+import type { GetStaticProps, GetStaticPaths } from "next";
 
-import type { Post as PostDetail } from '../../../lib/interfaces'
+import PostDetails from "../../components/Posts/PostDetails";
 
-const post: PostDetail = {
-    id: 'p-1',
-    title: 'Getting started Nextjs',
-    image: 'getting-started-nextjs.png',
-    content: 'Magna sint velit amet ex adipisicing velit id exercitation. Sint est ex labore esse deserunt. Sint labore eiusmod dolor qui duis eiusmod culpa qui ea ex adipisicing proident Lorem Lorem. Enim exercitation ea cupidatat sunt reprehenderit exercitation nulla. Tempor in proident et tempor ex pariatur pariatur.',
-    excerpt: 'Occaecat culpa velit nostrud pariatur nisi. Minim Lorem minim exercitation reprehenderit nisi labore minim aliqua.',
-    date: '2012-09-22',
-    slug: 'getting-started-nextjs'
+import type { Post as PostDetail } from "../../../lib/interfaces";
+import { getAllPosts, getPostData, getPostsFiles } from "../../../lib/utils";
+
+interface Props {
+  post: PostDetail;
 }
 
-function Post() {
-    return (
-        <PostDetails post={post} />
-    )
+function Post(props: Props) {
+  return <PostDetails post={props.post} />;
 }
 
-export default Post
+export const getStaticPaths: GetStaticPaths = () => {
+  const posts = getAllPosts();
+
+  const allPaths = posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+
+  return {
+    paths: allPaths,
+
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps: GetStaticProps = (context) => {
+  const { params } = context;
+
+  const { slug } = params as any;
+
+  const post = getPostData(slug);
+
+  return {
+    props: {
+      post,
+    },
+    revalidate: 100,
+  };
+};
+
+export default Post;

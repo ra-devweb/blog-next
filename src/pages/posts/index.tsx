@@ -1,34 +1,32 @@
-import PostsList from '../../components/Posts/PostsList'
-import type { Post } from '../../../lib/interfaces'
+import type { GetStaticProps } from "next";
 
-const posts: Post[] = [
-    {
-        id: 'p-1',
-        title: 'Getting started Nextjs',
-        image: 'getting-started-nextjs.png',
-        content: 'Magna sint velit amet ex adipisicing velit id exercitation. Sint est ex labore esse deserunt. Sint labore eiusmod dolor qui duis eiusmod culpa qui ea ex adipisicing proident Lorem Lorem. Enim exercitation ea cupidatat sunt reprehenderit exercitation nulla. Tempor in proident et tempor ex pariatur pariatur.',
-        excerpt: 'Occaecat culpa velit nostrud pariatur nisi. Minim Lorem minim exercitation reprehenderit nisi labore minim aliqua.',
-        date: '2012-09-22',
-        slug: 'getting-started-nextjs'
-    },
-    {
-        id: 'p-2',
-        title: 'Nextjs file based routing',
-        image: 'nextjs-file-based-routing.png',
-        content: 'Magna sint velit amet ex adipisicing velit id exercitation. Sint est ex labore esse deserunt. Sint labore eiusmod dolor qui duis eiusmod culpa qui ea ex adipisicing proident Lorem Lorem. Enim exercitation ea cupidatat sunt reprehenderit exercitation nulla. Tempor in proident et tempor ex pariatur pariatur.',
-        excerpt: 'Occaecat culpa velit nostrud pariatur nisi. Minim Lorem minim exercitation reprehenderit nisi labore minim aliqua.',
-        date: '2021-09-22',
-        slug: 'nextjs-file-based-routing'
-    }
-]
+import { getAllPosts } from "../../../lib/utils";
+import PostsList from "../../components/Posts/PostsList";
+import type { Post } from "../../../lib/interfaces";
 
-function Posts() {
-    return (
-        <section className='section-all-posts container mx-auto'>
-            <h1 className='my-10 text-4xl uppercase font-bold'>All posts</h1>
-            <PostsList posts={posts} />
-        </section>
-    )
+interface Props {
+  posts: Post[];
 }
 
-export default Posts
+function Posts(props: Props) {
+  return (
+    <section className="section-all-posts container mx-auto">
+      <h1 className="my-10 text-4xl uppercase font-bold">All posts</h1>
+      <PostsList posts={props.posts} />
+    </section>
+  );
+}
+
+export const getStaticProps: GetStaticProps = () => {
+  const posts = getAllPosts();
+
+  console.log(posts);
+
+  return {
+    props: {
+      posts,
+    },
+  };
+};
+
+export default Posts;
