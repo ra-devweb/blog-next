@@ -13,7 +13,7 @@ const PostDetails = (props: Props) => {
   const imagePath = `/images/posts/${image}`;
 
   return (
-    <section className="section-details container mx-auto">
+    <section className="section-details container mx-auto px-6">
       <article className="my-8">
         <PostHeader title={title} image={imagePath} />
         <PostContent content={content} date={date} />
