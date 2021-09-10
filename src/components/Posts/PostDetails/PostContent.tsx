@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
 interface Props {
   content: string;
   date: string;
@@ -50,12 +50,9 @@ const PostContent = (props: Props) => {
     },
     code(code: any) {
       const { className, children } = code;
-      const language = className.split('-')[1]; // className is something like language-js => We need the "js" part here
+      const language = className.split("-")[1]; // className is something like language-js => We need the "js" part here
       return (
-        <SyntaxHighlighter
-          style={dracula}
-          language={language}
-        >
+        <SyntaxHighlighter style={dracula} language={language}>
           {children}
         </SyntaxHighlighter>
       );

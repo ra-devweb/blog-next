@@ -1,4 +1,5 @@
 import type { GetStaticProps, GetStaticPaths } from "next";
+import Head from "next/head";
 
 import PostDetails from "../../components/Posts/PostDetails";
 
@@ -10,7 +11,15 @@ interface Props {
 }
 
 function Post(props: Props) {
-  return <PostDetails post={props.post} />;
+  return (
+    <>
+      <Head>
+        <title>{props.post.title}</title>
+        <meta name="description" content={`${props.post.excerpt}`} />
+      </Head>
+      <PostDetails post={props.post} />
+    </>
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = () => {

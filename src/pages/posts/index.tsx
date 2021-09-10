@@ -1,4 +1,5 @@
 import type { GetStaticProps } from "next";
+import Head from "next/head";
 
 import { getAllPosts } from "../../../lib/utils";
 import PostsList from "../../components/Posts/PostsList";
@@ -10,10 +11,16 @@ interface Props {
 
 function Posts(props: Props) {
   return (
-    <section className="section-all-posts container mx-auto px-6">
-      <h1 className="my-10 text-4xl uppercase font-bold">All posts</h1>
-      <PostsList posts={props.posts} />
-    </section>
+    <>
+      <Head>
+        <title>All post Blog</title>
+        <meta name="description" content="All post!" />
+      </Head>
+      <section className="section-all-posts container mx-auto px-6 mb-6">
+        <h1 className="my-10 text-4xl uppercase font-bold">All posts</h1>
+        <PostsList posts={props.posts} />
+      </section>
+    </>
   );
 }
 

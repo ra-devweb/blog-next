@@ -17,6 +17,7 @@ export function getPostData(postIdentifier: string) {
 
   const postData = {
     slug: postSlug,
+    isFeatured: data.isFeatured,
     ...data,
     content,
   };
@@ -36,4 +37,12 @@ export function getAllPosts() {
   );
 
   return sortedPosts;
+}
+
+export function getFeaturedPosts() {
+  const allPosts = getAllPosts();
+
+  const featuredPosts = allPosts.filter((post) => post.isFeatured);
+
+  return featuredPosts;
 }

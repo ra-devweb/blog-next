@@ -1,32 +1,33 @@
+import ReactDOM from "react-dom";
+
 interface Props {
-    title: string
-    message: string
-    status: string
+  title: string;
+  message: string;
+  status: string;
 }
 
 function Notification(props: Props) {
-    const { title, message, status } = props;
+  const { title, message, status } = props;
 
-    let statusClasses = '';
+  let statusClasses = "";
 
-    if (status === 'success') {
-        statusClasses = 'alert-success';
-    }
+  if (status === "success") {
+    statusClasses = "alert-success";
+  }
 
-    if (status === 'error') {
-        statusClasses = 'alert-error';
-    }
+  if (status === "error") {
+    statusClasses = "alert-error";
+  }
 
-    const cssClasses = `${'alert mt-4'} ${statusClasses}`;
+  const cssClasses = `${"alert my-6"} ${statusClasses}`;
 
-    return (
-        <div className={cssClasses}>
-            <div className='flex flex-col md:flex-1 md:flex-row justify-evenly'>
-                <h2>{title}</h2>
-                <label>{message}</label>
-            </div>
-        </div>
-    );
+  return ReactDOM.createPortal(
+    <div className={cssClasses}>
+      <h2>{title}</h2>
+      <p>{message}</p>
+    </div>,
+    document.getElementById("notifications") as HTMLDivElement
+  );
 }
 
 export default Notification;
